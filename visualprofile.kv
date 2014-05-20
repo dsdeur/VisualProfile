@@ -1,0 +1,104 @@
+#:kivy 1.7.2
+#:import sm kivy.uix.screenmanager
+
+<MainLayout>:
+    screen_manager: _screen_manager
+    buttons: _color_buttons
+    main_menu: _main_menu
+    buttons_filter: _filter_colors          
+    color_palette: _color_palette          
+    button_start: _button_start             
+    button_detail: _button_detail            
+
+    ScreenManager:
+        id: _screen_manager
+        transition: sm.SlideTransition()
+        Screen:
+            name: "MainMenu"
+            BoxLayout:
+                id: _main_menu
+                BoxLayout:
+                    orientation:'vertical'
+                    Button:
+                        text:"Configure Background Filter"
+                        on_press: _screen_manager.current = "FilterBackground"
+                Button:
+                    text:"Visual Profile Program"
+                    on_press: _screen_manager.current = "visualProfileProgram"
+                Button:
+                    text:"Quit"
+                    on_press: close()
+
+        Screen:
+            on_pre_enter: root.FConPreEnter()
+            name: "FilterBackground"
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                size_hint: 1, .95
+                
+                BoxLayout:
+                    GridLayout:
+                        id: _color_buttons
+                        cols:5
+                    
+                    GridLayout:
+                        id: _filter_colors
+                        cols:5
+
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint: 1, .05
+                    
+                    Label:
+                        text:"Colors"
+
+                    Button:
+                        text:"Back"
+                        on_press: _screen_manager.current = "MainMenu"                   
+                    Button:
+                        text:"Reset"
+                        on_press: root.resetFilterColors()
+                    Label:
+                        text:"Colors to filter"
+
+        Screen:
+            name: "visualProfileProgram"
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                size_hint: 1, .95
+                
+                BoxLayout:
+                    BoxLayout:
+                        orientation: "vertical"
+                        Button:
+                            text:"Start palette"
+                            on_press: root.start()
+                            id:_button_start
+                        Button:
+                            text:"Detail foto's"
+                            on_press: root.getDetail()
+                            id:_button_detail
+                    BoxLayout:
+                        orientation: "vertical"
+                        id: _color_palette
+
+
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint: 1, .05
+
+                    Button:
+                        text:"Back"
+                        on_press: _screen_manager.current = "MainMenu"
+
+        

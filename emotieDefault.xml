@@ -1,0 +1,14 @@
+<person>
+ <emotion>
+  <Age>35.0</Age>
+  <AgeDeviation>9.0</AgeDeviation>
+  <Angry>0.0</Angry>
+  <Female>71.8</Female>
+  <Happy>100.0</Happy>
+  <Male>0.0</Male>
+  <Sad>0.0</Sad>
+  <Score>60.0</Score>
+  <Surprised>70.0</Surprised>
+ </emotion>
+</person>
+
